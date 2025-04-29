@@ -6,179 +6,154 @@
   <title>Nandini Singh | Portfolio</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #f0f2f5;
-      color: #333;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.5s, color 0.5s;
     }
 
     header {
+      padding: 40px 0;
       text-align: center;
-      padding: 50px 20px;
-      border-radius: 15px;
-      transition: background-color 0.5s ease, color 0.5s ease;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 32px;
+      color: white;
+      transition: background-color 0.5s;
     }
 
     #subtitle {
-      font-size: 20px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    section {
-      background-color: white;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 900px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    h2 {
-      color: #283593;
-    }
-
-    /* Dark Mode */
-    body.dark-mode {
-      background-color: #121212;
-      color: #e0e0e0;
-    }
-
-    body.dark-mode section {
-      background-color: #1e1e1e;
-      color: #e0e0e0;
-    }
-
-    body.dark-mode header {
-      background-color: #1f1f1f !important;
-      color: white !important;
-    }
-
-    #dark-toggle {
-      position: fixed;
-      top: 20px;
-      right: 30px;
-      padding: 8px 14px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      background-color: #444;
-      color: white;
-      z-index: 1000;
-    }
-
-    #back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      padding: 10px 16px;
       font-size: 18px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      display: none;
-      z-index: 999;
-      transition: background-color 0.3s ease;
+      margin-top: 10px;
+      transition: color 0.5s;
     }
 
-    #back-to-top:hover {
-      background-color: #0056b3;
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .section-box {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: color 0.5s;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+
+    .dark-mode .section-box {
+      background-color: #1e1e1e;
+    }
+
+    .btn-toggle, .btn-top {
+      position: fixed;
+      right: 20px;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    .btn-toggle {
+      top: 20px;
+    }
+
+    .btn-top {
+      bottom: 20px;
+      display: none;
     }
   </style>
 </head>
 <body>
-
-  <button id="dark-toggle">Toggle Dark Mode</button>
-  <button id="back-to-top">↑ Top</button>
+  <button id="dark-toggle" class="btn-toggle">Toggle Dark Mode</button>
+  <button id="back-to-top" class="btn-top">Back to Top</button>
 
   <header id="main-header">
     <h1>Nandini Singh</h1>
-    <div id="subtitle">Web Developer</div>
+    <div id="subtitle">B.Tech CSE (4th Year) | Web Development & DevOps Enthusiast</div>
   </header>
 
-  <section>
-    <h2>About Me</h2>
-    <p>Hello! I'm a final-year B.Tech Computer Science student passionate about building web applications and exploring DevOps tools and technologies. I'm actively learning and working on projects to expand my skill set.</p>
-  </section>
+  <div class="container">
+    <div class="section-box" id="about">
+      <h2>About Me</h2>
+      <p>Hello! I'm a final-year B.Tech Computer Science student passionate about building web applications and exploring DevOps tools and technologies.</p>
+    </div>
 
-  <section>
-    <h2>Projects</h2>
-    <p>Projects coming soon! Stay tuned for web apps and DevOps automation tools built using Git, Linux, and JavaScript frameworks.</p>
-  </section>
+    <div class="section-box" id="projects">
+      <h2>Projects</h2>
+      <p>Projects coming soon! Stay tuned for web apps and DevOps automation tools built using Git, Linux, and JavaScript frameworks.</p>
+    </div>
 
-  <section>
-    <h2>Skills</h2>
-    <ul>
-      <li>HTML, CSS, JavaScript</li>
-      <li>Java, Git, GitHub</li>
-      <li>Linux, Networking</li>
-    </ul>
-  </section>
+    <div class="section-box" id="skills">
+      <h2>Skills</h2>
+      <p>HTML, CSS, JavaScript, Git, Linux, Networking, Java, DevOps Tools</p>
+    </div>
+  </div>
 
   <script>
-    const darkToggle = document.getElementById('dark-toggle');
-    const backToTopBtn = document.getElementById("back-to-top");
-    const header = document.getElementById("main-header");
-    const subtitle = document.getElementById("subtitle");
-    const sections = document.querySelectorAll("section");
-    const body = document.body;
-
     const themes = [
-      { text: "Nandini Singh", color: "#d81b60", bg: "#fce4ec" },
-      { text: "Web Developer", color: "#1e88e5", bg: "#e3f2fd" },
-      { text: "DevOps Learner", color: "#43a047", bg: "#e8f5e9" }
+      {
+        text: "Nandini Singh",
+        headerColor: "#d81b60",
+        bgColor: "#fce4ec",
+        textColor: "#3c0032"
+      },
+      {
+        text: "Web Developer",
+        headerColor: "#1e88e5",
+        bgColor: "#e3f2fd",
+        textColor: "#003c8f"
+      },
+      {
+        text: "DevOps Learner",
+        headerColor: "#43a047",
+        bgColor: "#e8f5e9",
+        textColor: "#003314"
+      }
     ];
 
-    let currentTheme = 0;
+    let current = 0;
+    const subtitle = document.getElementById("subtitle");
+    const header = document.getElementById("main-header");
+    const body = document.body;
+    const boxes = document.querySelectorAll(".section-box");
 
     function applyTheme(theme) {
       subtitle.textContent = theme.text;
-      subtitle.style.color = theme.color;
-      header.style.backgroundColor = theme.color;
+      subtitle.style.color = theme.textColor;
+      header.style.backgroundColor = theme.headerColor;
+      body.style.backgroundColor = theme.bgColor;
+      body.style.color = theme.textColor;
 
-      if (!body.classList.contains('dark-mode')) {
-        body.style.backgroundColor = theme.bg;
-        sections.forEach(section => {
-          section.style.backgroundColor = 'white';
-          section.style.color = '#333';
-        });
-      }
+      // Only change text color inside section boxes
+      boxes.forEach(box => {
+        box.style.color = theme.textColor;
+      });
     }
 
-    function rotateThemes() {
-      applyTheme(themes[currentTheme]);
-      currentTheme = (currentTheme + 1) % themes.length;
+    function rotateTheme() {
+      applyTheme(themes[current]);
+      current = (current + 1) % themes.length;
     }
 
-    setInterval(rotateThemes, 3000);
-    applyTheme(themes[0]); // initial theme
+    setInterval(rotateTheme, 3000);
+    applyTheme(themes[0]);
 
     // Dark Mode Toggle
-    darkToggle.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) {
-        body.style.backgroundColor = "#121212";
-      } else {
-        applyTheme(themes[currentTheme]);
-      }
+    const toggleBtn = document.getElementById("dark-toggle");
+    toggleBtn.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
     });
 
     // Back to Top Button
+    const topBtn = document.getElementById("back-to-top");
     window.addEventListener("scroll", () => {
-      backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+      topBtn.style.display = window.scrollY > 300 ? "block" : "none";
     });
-
-    backToTopBtn.addEventListener("click", () => {
+    topBtn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   </script>
