@@ -21,6 +21,7 @@
     #subtitle {
       font-size: 18px;
       margin-top: 10px;
+      min-height: 24px;
       transition: color 0.5s;
     }
 
@@ -73,21 +74,21 @@
 
   <header id="main-header">
     <h1>Nandini Singh</h1>
-    <div id="subtitle">B.Tech CSE (4th Year) | Web Development & DevOps Enthusiast</div>
+    <div id="subtitle"></div>
   </header>
 
   <div class="container">
-    <div class="section-box" id="about">
+    <div class="section-box">
       <h2>About Me</h2>
       <p>Hello! I'm a final-year B.Tech Computer Science student passionate about building web applications and exploring DevOps tools and technologies.</p>
     </div>
 
-    <div class="section-box" id="projects">
+    <div class="section-box">
       <h2>Projects</h2>
       <p>Projects coming soon! Stay tuned for web apps and DevOps automation tools built using Git, Linux, and JavaScript frameworks.</p>
     </div>
 
-    <div class="section-box" id="skills">
+    <div class="section-box">
       <h2>Skills</h2>
       <p>HTML, CSS, JavaScript, Git, Linux, Networking, Java, DevOps Tools</p>
     </div>
@@ -122,29 +123,41 @@
     const boxes = document.querySelectorAll(".section-box");
 
     function applyTheme(theme) {
-      subtitle.textContent = theme.text;
       subtitle.style.color = theme.textColor;
       header.style.backgroundColor = theme.headerColor;
       body.style.backgroundColor = theme.bgColor;
       body.style.color = theme.textColor;
-
-      // Only change text color inside section boxes
       boxes.forEach(box => {
         box.style.color = theme.textColor;
       });
     }
 
-    function rotateTheme() {
-      applyTheme(themes[current]);
-      current = (current + 1) % themes.length;
+    function typeText(text, callback) {
+      subtitle.textContent = "";
+      let i = 0;
+      const interval = setInterval(() => {
+        subtitle.textContent += text.charAt(i);
+        i++;
+        if (i === text.length) {
+          clearInterval(interval);
+          setTimeout(callback, 2000); // wait 2 seconds before next
+        }
+      }, 100);
     }
 
-    setInterval(rotateTheme, 3000);
-    applyTheme(themes[0]);
+    function rotateTheme() {
+      const theme = themes[current];
+      applyTheme(theme);
+      typeText(theme.text, () => {
+        current = (current + 1) % themes.length;
+        rotateTheme();
+      });
+    }
+
+    rotateTheme();
 
     // Dark Mode Toggle
-    const toggleBtn = document.getElementById("dark-toggle");
-    toggleBtn.addEventListener("click", () => {
+    document.getElementById("dark-toggle").addEventListener("click", () => {
       body.classList.toggle("dark-mode");
     });
 
