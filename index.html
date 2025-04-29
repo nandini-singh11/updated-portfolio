@@ -1,174 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Nandini Singh | Portfolio</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       transition: background-color 0.5s, color 0.5s;
+      background-color: #fdeef3;
     }
 
     header {
-      padding: 40px 0;
       text-align: center;
-      color: white;
-      transition: background-color 0.5s;
+      padding: 2rem;
+      transition: background-color 0.5s, color 0.5s;
     }
 
-    #subtitle {
-      font-size: 18px;
-      margin-top: 10px;
-      min-height: 24px;
-      transition: color 0.5s;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 0 20px;
-    }
-
-    .section-box {
+    section {
       background-color: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin: 1rem;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2, p, li, a {
       transition: color 0.5s;
+    }
+
+    #dark-toggle {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px;
+      font-size: 1rem;
+      display: none;
+      cursor: pointer;
+    }
+
+    ul {
+      padding-left: 20px;
     }
 
     .dark-mode {
       background-color: #121212;
-      color: #f1f1f1;
+      color: white;
     }
 
-    .dark-mode .section-box {
+    .dark-mode section {
       background-color: #1e1e1e;
     }
 
-    .btn-toggle, .btn-top {
-      position: fixed;
-      right: 20px;
-      padding: 10px 15px;
-      font-size: 14px;
-      cursor: pointer;
-      z-index: 999;
-    }
-
-    .btn-toggle {
-      top: 20px;
-    }
-
-    .btn-top {
-      bottom: 20px;
-      display: none;
+    .dark-mode a {
+      color: lightblue;
     }
   </style>
 </head>
 <body>
-  <button id="dark-toggle" class="btn-toggle">Toggle Dark Mode</button>
-  <button id="back-to-top" class="btn-top">Back to Top</button>
-
-  <header id="main-header">
-    <h1>Nandini Singh</h1>
-    <div id="subtitle"></div>
+  <header id="header">
+    <h1 id="typing-text">Nandini Singh</h1>
+    <p id="subtitle">B.Tech CSE (4th Year) | Web Development & DevOps Enthusiast</p>
+    <button id="dark-toggle">Toggle Dark Mode</button>
   </header>
 
-  <div class="container">
-    <div class="section-box">
-      <h2>About Me</h2>
-      <p>Hello! I'm a final-year B.Tech Computer Science student passionate about building web applications and exploring DevOps tools and technologies.</p>
-    </div>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I'm a final-year B.Tech Computer Science student passionate about building web applications and exploring DevOps tools and technologies.</p>
+  </section>
 
-    <div class="section-box">
-      <h2>Projects</h2>
-      <p>Projects coming soon! Stay tuned for web apps and DevOps automation tools built using Git, Linux, and JavaScript frameworks.</p>
-    </div>
+  <section id="projects">
+    <h2>Projects</h2>
+    <p>Projects coming soon! Stay tuned for web apps and DevOps automation tools built using Git, Linux, and JavaScript frameworks.</p>
+  </section>
 
-    <div class="section-box">
-      <h2>Skills</h2>
-      <p>HTML, CSS, JavaScript, Git, Linux, Networking, Java, DevOps Tools</p>
-    </div>
-  </div>
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>HTML & CSS</li>
+      <li>Java</li>
+      <li>Networking</li>
+      <li>Git & GitHub</li>
+      <li>Linux</li>
+      <li>DevOps Basics</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>LinkedIn: <a href="#" target="_blank">[Add your LinkedIn URL]</a></p>
+  </section>
+
+  <button id="backToTop">⬆️ Back to Top</button>
 
   <script>
-    const themes = [
-      {
-        text: "Nandini Singh",
-        headerColor: "#d81b60",
-        bgColor: "#fce4ec",
-        textColor: "#3c0032"
-      },
-      {
-        text: "Web Developer",
-        headerColor: "#1e88e5",
-        bgColor: "#e3f2fd",
-        textColor: "#003c8f"
-      },
-      {
-        text: "DevOps Learner",
-        headerColor: "#43a047",
-        bgColor: "#e8f5e9",
-        textColor: "#003314"
-      }
+    const titles = [
+      { text: "Nandini Singh", color: "#e91e63", bg: "#fdeef3" },
+      { text: "Web Developer", color: "#2196f3", bg: "#e3f2fd" },
+      { text: "DevOps Learner", color: "#4caf50", bg: "#e8f5e9" }
     ];
 
-    let current = 0;
+    let index = 0;
+    const typingText = document.getElementById("typing-text");
     const subtitle = document.getElementById("subtitle");
-    const header = document.getElementById("main-header");
-    const body = document.body;
-    const boxes = document.querySelectorAll(".section-box");
+    const header = document.getElementById("header");
 
-    function applyTheme(theme) {
-      subtitle.style.color = theme.textColor;
-      header.style.backgroundColor = theme.headerColor;
-      body.style.backgroundColor = theme.bgColor;
-      body.style.color = theme.textColor;
-      boxes.forEach(box => {
-        box.style.color = theme.textColor;
+    function updateTitle() {
+      const current = titles[index];
+      typingText.textContent = current.text;
+      document.body.style.backgroundColor = current.bg;
+      header.style.backgroundColor = current.bg;
+      header.style.color = current.color;
+      subtitle.style.color = current.color;
+
+      document.querySelectorAll("section h2, section p, section li").forEach(el => {
+        el.style.color = current.color;
       });
+
+      index = (index + 1) % titles.length;
     }
 
-    function typeText(text, callback) {
-      subtitle.textContent = "";
-      let i = 0;
-      const interval = setInterval(() => {
-        subtitle.textContent += text.charAt(i);
-        i++;
-        if (i === text.length) {
-          clearInterval(interval);
-          setTimeout(callback, 2000); // wait 2 seconds before next
-        }
-      }, 100);
-    }
+    setInterval(updateTitle, 3000);
+    updateTitle(); // Initialize first
 
-    function rotateTheme() {
-      const theme = themes[current];
-      applyTheme(theme);
-      typeText(theme.text, () => {
-        current = (current + 1) % themes.length;
-        rotateTheme();
-      });
-    }
-
-    rotateTheme();
-
-    // Dark Mode Toggle
     document.getElementById("dark-toggle").addEventListener("click", () => {
-      body.classList.toggle("dark-mode");
+      document.body.classList.toggle("dark-mode");
     });
 
-    // Back to Top Button
-    const topBtn = document.getElementById("back-to-top");
-    window.addEventListener("scroll", () => {
-      topBtn.style.display = window.scrollY > 300 ? "block" : "none";
-    });
-    topBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+    // Back to top
+    const backToTopBtn = document.getElementById("backToTop");
+    window.onscroll = () => {
+      backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    };
+    backToTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
   </script>
 </body>
 </html>
+
