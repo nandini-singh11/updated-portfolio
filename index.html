@@ -3,70 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Nandini Singh | Portfolio</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      transition: background-color 0.5s, color 0.5s;
-      background-color: #fdeef3;
-    }
-
-    header {
-      text-align: center;
-      padding: 2rem;
-      transition: background-color 0.5s, color 0.5s;
-    }
-
-    section {
-      background-color: white;
-      margin: 1rem;
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    h1, h2, p, li, a {
-      transition: color 0.5s;
-    }
-
-    #dark-toggle {
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-    }
-
-    #backToTop {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px;
-      font-size: 1rem;
-      display: none;
-      cursor: pointer;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    .dark-mode {
-      background-color: #121212;
-      color: white;
-    }
-
-    .dark-mode section {
-      background-color: #1e1e1e;
-    }
-
-    .dark-mode a {
-      color: lightblue;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header id="header">
-    <h1 id="typing-text">Nandini Singh</h1>
-    <p id="subtitle">B.Tech CSE (4th Year) | Web Development & DevOps Enthusiast</p>
+  <header>
+    <h1><span id="typing-text"></span></h1>
+    <p id="subheading">B.Tech CSE (4th Year) | Web Development & DevOps Enthusiast</p>
     <button id="dark-toggle">Toggle Dark Mode</button>
   </header>
 
@@ -99,47 +41,6 @@
 
   <button id="backToTop">⬆️ Back to Top</button>
 
-  <script>
-    const titles = [
-      { text: "Nandini Singh", color: "#e91e63", bg: "#fdeef3" },
-      { text: "Web Developer", color: "#2196f3", bg: "#e3f2fd" },
-      { text: "DevOps Learner", color: "#4caf50", bg: "#e8f5e9" }
-    ];
-
-    let index = 0;
-    const typingText = document.getElementById("typing-text");
-    const subtitle = document.getElementById("subtitle");
-    const header = document.getElementById("header");
-
-    function updateTitle() {
-      const current = titles[index];
-      typingText.textContent = current.text;
-      document.body.style.backgroundColor = current.bg;
-      header.style.backgroundColor = current.bg;
-      header.style.color = current.color;
-      subtitle.style.color = current.color;
-
-      document.querySelectorAll("section h2, section p, section li").forEach(el => {
-        el.style.color = current.color;
-      });
-
-      index = (index + 1) % titles.length;
-    }
-
-    setInterval(updateTitle, 3000);
-    updateTitle(); // Initialize first
-
-    document.getElementById("dark-toggle").addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-    });
-
-    // Back to top
-    const backToTopBtn = document.getElementById("backToTop");
-    window.onscroll = () => {
-      backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-    };
-    backToTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
-
