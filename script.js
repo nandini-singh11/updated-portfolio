@@ -47,3 +47,7 @@ document.getElementById("dark-toggle").addEventListener("click", () => {
 document.getElementById("backToTop").addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+// Dark Mode Toggle
+document.getElementById('dark-toggle').addEventListener('click', function () {
+  document.body.classList.toggle('dark-mode');
+});
