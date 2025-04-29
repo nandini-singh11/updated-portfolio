@@ -1,53 +1,56 @@
-const themes = [
-  {
-    text: "Nandini Singh",
-    bgColor: "#fdeef3",
-    textColor: "#e91e63"
-  },
-  {
-    text: "Web Developer",
-    bgColor: "#e3f2fd",
-    textColor: "#2196f3"
-  },
-  {
-    text: "DevOps Learner",
-    bgColor: "#e8f5e9",
-    textColor: "#4caf50"
-  }
-];
-
-let index = 0;
-
-function applyTheme(theme) {
-  document.getElementById("typing-text").textContent = theme.text;
-  document.body.style.backgroundColor = theme.bgColor;
-  document.body.style.color = theme.textColor;
-  document.querySelector("header").style.color = theme.textColor;
-
-  // Update section text color
-  document.querySelectorAll("section h2, section p, section li").forEach(el => {
-    el.style.color = theme.textColor;
-  });
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+  transition: background-color 0.5s, color 0.5s;
 }
 
-function cycleThemes() {
-  applyTheme(themes[index]);
-  index = (index + 1) % themes.length;
+header {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f8bbd0;
+  color: #e91e63;
+  transition: background-color 0.5s, color 0.5s;
 }
 
-setInterval(cycleThemes, 3000);
-cycleThemes(); // Initial call
+section {
+  margin: 2rem;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.5s, color 0.5s;
+}
 
-// Dark Mode Toggle
-document.getElementById("dark-toggle").addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-});
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
 
-// Back to Top
-document.getElementById("backToTop").addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-// Dark Mode Toggle
-document.getElementById('dark-toggle').addEventListener('click', function () {
-  document.body.classList.toggle('dark-mode');
-});
+button {
+  margin: 1rem;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode header {
+  background-color: #1e1e1e;
+  color: #90caf9;
+}
+
+body.dark-mode section {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+body.dark-mode a {
+  color: #64b5f6;
+}
