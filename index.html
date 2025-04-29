@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nandini Singh | Portfolio</title>
   <style>
     body {
@@ -18,15 +18,17 @@
       text-align: center;
       padding: 50px 20px;
       border-radius: 15px;
-      background-color: #283593;
-      color: white;
-      transition: background-color 0.5s ease;
+      transition: background-color 0.5s ease, color 0.5s ease;
     }
 
-    .typewriter span {
-      font-size: 24px;
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    #subtitle {
+      font-size: 20px;
       font-weight: bold;
-      display: block;
       margin-top: 10px;
     }
 
@@ -36,7 +38,7 @@
       margin: 20px auto;
       max-width: 900px;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
@@ -44,14 +46,10 @@
       color: #283593;
     }
 
-    /* Dark mode styles */
+    /* Dark Mode */
     body.dark-mode {
       background-color: #121212;
       color: #e0e0e0;
-    }
-
-    body.dark-mode header {
-      background-color: #1f1f1f;
     }
 
     body.dark-mode section {
@@ -59,7 +57,11 @@
       color: #e0e0e0;
     }
 
-    /* Buttons */
+    body.dark-mode header {
+      background-color: #1f1f1f !important;
+      color: white !important;
+    }
+
     #dark-toggle {
       position: fixed;
       top: 20px;
@@ -99,9 +101,9 @@
   <button id="dark-toggle">Toggle Dark Mode</button>
   <button id="back-to-top">↑ Top</button>
 
-  <header>
+  <header id="main-header">
     <h1>Nandini Singh</h1>
-    <div class="typewriter"><span id="subtitle">Web Developer</span></div>
+    <div id="subtitle">Web Developer</div>
   </header>
 
   <section>
@@ -124,15 +126,54 @@
   </section>
 
   <script>
-    // Dark Mode Toggle
     const darkToggle = document.getElementById('dark-toggle');
+    const backToTopBtn = document.getElementById("back-to-top");
+    const header = document.getElementById("main-header");
+    const subtitle = document.getElementById("subtitle");
+    const sections = document.querySelectorAll("section");
+    const body = document.body;
+
+    const themes = [
+      { text: "Nandini Singh", color: "#d81b60", bg: "#fce4ec" },
+      { text: "Web Developer", color: "#1e88e5", bg: "#e3f2fd" },
+      { text: "DevOps Learner", color: "#43a047", bg: "#e8f5e9" }
+    ];
+
+    let currentTheme = 0;
+
+    function applyTheme(theme) {
+      subtitle.textContent = theme.text;
+      subtitle.style.color = theme.color;
+      header.style.backgroundColor = theme.color;
+
+      if (!body.classList.contains('dark-mode')) {
+        body.style.backgroundColor = theme.bg;
+        sections.forEach(section => {
+          section.style.backgroundColor = 'white';
+          section.style.color = '#333';
+        });
+      }
+    }
+
+    function rotateThemes() {
+      applyTheme(themes[currentTheme]);
+      currentTheme = (currentTheme + 1) % themes.length;
+    }
+
+    setInterval(rotateThemes, 3000);
+    applyTheme(themes[0]); // initial theme
+
+    // Dark Mode Toggle
     darkToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
+        body.style.backgroundColor = "#121212";
+      } else {
+        applyTheme(themes[currentTheme]);
+      }
     });
 
     // Back to Top Button
-    const backToTopBtn = document.getElementById("back-to-top");
-
     window.addEventListener("scroll", () => {
       backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
     });
@@ -140,34 +181,6 @@
     backToTopBtn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-
-    // Animated Title Text
-    const subtitles = [
-      { text: "B.Tech CSE (4th Year)", color: "#f06292", bg: "#fce4ec" },
-      { text: "Web Developer", color: "#42a5f5", bg: "#e3f2fd" },
-      { text: "DevOps Learner", color: "#66bb6a", bg: "#e8f5e9" },
-    ];
-
-    let i = 0;
-    const subtitleElement = document.getElementById("subtitle");
-    const header = document.querySelector("header");
-
-    function rotateSubtitles() {
-      const { text, color, bg } = subtitles[i];
-      subtitleElement.textContent = text;
-      subtitleElement.style.color = color;
-      header.style.backgroundColor = color;
-      document.body.style.backgroundColor = bg;
-
-      if (document.body.classList.contains('dark-mode')) {
-        document.body.style.backgroundColor = '#121212';
-        header.style.backgroundColor = '#1f1f1f';
-      }
-
-      i = (i + 1) % subtitles.length;
-    }
-
-    setInterval(rotateSubtitles, 3000);
   </script>
 </body>
 </html>
